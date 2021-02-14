@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--Heading for everything, basic metadata-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Rona Phase</title>
+    
+    <!--Adding favicon-->
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico" />
+
+    <!--Linking CSS and JavaScript files-->
+    <script src="https://www.google.com/recaptcha/api.js?render=reCAPTCHA_site_key"></script>
+    <link href="main.css" rel="stylesheet" type="text/css" />
+    <script type="module" src="scrollup.js"></script>
+    <script src="node_modules/novelcovid.js"></script>
+  </head>
+
+  <body>
+  <!--Start of the body-->
+
+    <!--Home/Menu Section-->
+    <section id = "home" class = "scrollTrigger">
+      <header id="header" class="alt">
+        
+        <!--Logo-->
+        <a href="index.html"><img class = "logo" src="/img/RonaPhase.png"></a>
+        
+        <!--Menu bar (Home, Map, Calculator, etc.)-->
+        <nav id="nav">          
+          <ul>
+            <li><a href="#map">Map</a></li>
+            <li><a href="#calculator">Calculator</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#info">Vaccine Information</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </header>
+    </section>
+    
+
+    <!--Welcome Section-->
+    <section id = "welcome">
+      <h1>Welcome To Rona Phase</h1>
+
+      <!--Get started button sends user to Covid Map-->
+      <a href="#map"><img class = "submitButton" src="/img/GetStarted.png"/></a><br>
+    </section>
+    
+
+    <!--Map Section-->
+    <section id = "map">
+      <h2 id = "Headings">Maps</h2>
+      <p data-pym-loader="" data-child-src="https://apps.npr.org/dailygraphics/graphics/coronavirus-d3-us-map-20200312/change-map.html" id="responsive-embed-coronavirus-d3-us-map-20200312-change-map" data-embed-loaded=""><iframe src="https://apps.npr.org/dailygraphics/graphics/coronavirus-d3-us-map-20200312/change-map.html?initialWidth=1238&amp;childId=responsive-embed-coronavirus-d3-us-map-20200312-change-map&amp;parentTitle=Coronavirus%20Update%3A%20Maps%20And%20Charts%20For%20U.S.%20Cases%20And%20Deaths%20%3A%20Shots%20-%20Health%20News%20%3A%20NPR&amp;parentUrl=https%3A%2F%2Fwww.npr.org%2Fsections%2Fhealth-shots%2F2020%2F09%2F01%2F816707182%2Fmap-tracking-the-spread-of-the-coronavirus-in-the-u-s" width="100%" scrolling="no" marginheight="0" frameborder="0" height="1255px"></iframe></p>
+      
+
+    </section>
+
+
+    <!--Calculator Section-->
+    <section id = "calculator">
+      
+      <!--Calculator Heading-->
+      <h2 id = "Headings">Phase Calculator</h2>
+
+      <!--Calculator Description-->
+      <p>To help you find out the vaccine phase (aka when you can get vaccinated) you're in, check out our phase calculator:</p>
+      <br>
+
+      <!--Form for inputting information to find out your phase-->
+  
+      <form id="frm1">
+            
+        <!--Age Question-->
+        <label>Your Age: <input type="number" min = "0" max = "120"></label><br>
+
+        <!--Essential Worker Question-->
+        <label>Are you an <u><b><a class ="tooltip" href = "https://www.cdc.gov/vaccines/covid-19/categories-essential-workers.html" target = "_blank">essential worker<span class="tooltiptext">What is an essential worker? Click to find out more!</span></a></u></b>?
+        <select name="essentialWorker">
+          <option value="No">No</option>
+          <option value="Yes">Yes</option>
+        </select></label><br>
+            
+        <!--Public Worker Question-->
+        <label>Are you a <u><b><a class ="tooltip" href = "https://www.merriam-webster.com/dictionary/public%20servant" target = "_blank">public worker<span class="tooltiptext">What is a public worker? Click to find out more!</span></a></u></b>? 
+        <select name="publicWorker">
+          <option value="No">No</option>
+          <option value="Yes">Yes</option>
+        </select></label><br>
+
+        <!--Healthcare Worker Question-->
+        <label>Are you a <u><b><a class ="tooltip" href = "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5299814/#:~:text=A%20healthcare%20worker%20is%20one,59%20million%20healthcare%20workers%20worldwide." target = "_blank">healthcare worker<span class="tooltiptext">What is a healthcare worker? Click to find out more!</span></a></u></b>? 
+        <select name="medicalWorker">
+          <option value="No">No</option>
+          <option value="Yes">Yes</option>
+        </select></label><br>
+
+        <!--Pre-Existing Conditions Question-->
+        <label>How many <u><b><a class ="tooltip" href = "https://www.cdc.gov/coronavirus/2019-ncov/need-extra-precautions/people-with-medical-conditions.html" target = "_blank">pre-existing medical conditions<span class="tooltiptext">What conditions apply? Click to find out more!</span></a></u></b> do you have? <select name="calculator">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select></label><br><br>
+
+        <!--Submit button-->
+        <img class = "submitButton" src="/img/Submit.png"/ onClick="myFunction()">
+        
+      </form>
+      
+    </section>
+
+<!--This is the JavaScript that gets executed when the submit button is clicked-->
+<script>
+function myFunction() {
+  var x = document.getElementById("frm1");
+  var text = "";
+  var i;
+  var essential;
+  var underlying;
+  var medical;
+  var service;
+  var age;
+  //converting user input to numbers and booleans
+  age = x.elements[0].value
+  if (x.elements[1].value === "Yes"){
+    essential = true;
+  }else essential = false;
+  if (x.elements[2].value === "Yes"){
+    service = true;
+  }else service = false;
+  if (x.elements[3].value === "Yes"){
+    medical = true;
+  }else medical = false;
+  underlying = x.elements[4].value;
+  //a lot of if statements that "calculates" what a phase a user will be in.
+  var endphase;
+  if (Number(age)<17 ) {
+    alert("You are currently too young to get the vaccine");
+    return;
+  }
+if (medical === true){
+alert("You qualify for Phase: 1A");
+return;
+}
+if (Number(age)>65){
+  alert("You qualify for Phase: 1B Tier 1");
+  return;
+}
+if (Number(age)>50){
+  if (essential === true){
+    
+  alert("You qualify for Phase: 1B Tier 2");
+  return;
+  }else 
+    alert("You qualify for Phase: 1B Tier 1");
+    return;
+}
+if (service === true){
+  if (Number(age)> 50){
+      alert("You qualify for Phase: 1B Tier 2");
+     return;
+  }
+}
+if (Number(underlying) === 2){
+    alert("You qualify for Phase: 1B Tier 3");
+    return;
+
+}
+if (Number(age)<50){
+  if (essential === true){
+      alert("You qualify for Phase: 1B Tier 4");
+      return;
+  }
+}
+if (service === true){
+    alert("You qualify for Phase: 1B Tier 4");
+    return;
+}
+else{
+  alert("You currently don't qualify for any phases from Tier 1, which is the only phase the CDC has detailed so far.")
+  return;
+}
+
+}
+</script>
+
+  
+    <!--About Us Section-->
+    <section id = "about">
+      
+      <!--About Us Header-->
+      <h2 id = "Headings">About</h2>
+  
+      <div id = "AboutWords">
+        <p>Rona Phase is a website designed to keep everyone informed about Covid-19 cases and vaccine phases in all 50 states of the USA. We added the map in from 
+        <u><b><a class ="tooltip" href = "https://elfsight.com/coronavirus-stats-widget/?utm_source=websites&utm_medium=clients&utm_content=coronavirus-stats&utm_term=e58b4e6e-53c8-4bee-b18d-f6fa9a179d2e.id.replitusercontent.com&utm_campaign=free-widget"target = "_blank">  ElfSight Covid Statistics<span class="tooltiptext"> Click to find out more!</span> </a></u></b> for the map. To obtain information about vaccine phases for the vaccine calculator we used <u><b><a class ="tooltip" href = "https://www.kff.org/policy-watch/the-covid-19-vaccine-priority-line-continues-to-change-as-states-make-further-updates/" target = "_blank">The Kaiser Family Foundation <span class="tooltiptext"> Click to find out more!</span> </a></u></b>.</p>
+      </div>
+    </section>
+
+    <!--Covid Information-->
+    <section id = "info">
+        
+      <!--Covid Information Header-->
+      <h2 id = "Headings">Vaccine Information</h2>
+      <p>
+        The CDC has implemeneted an federal vaccine phase standard, with different states advancing to different phases based on how many vaccines they have distributed. If you're in the vaccine phase that's being implemented in your state, then you can get the vaccine. Here's the CDC's descriptions of the phases:  
+      </p>
+  <br>
+      <img class = "infophase" src = "/img/Washington.png"/>  
+   
+    </section>
+
+    <!--Contact Section-->
+    <section id = "contact">
+      
+      <!--Contact Header-->
+      <h2 id = "Headings">Contact</h2>
+
+      <!--Start of Form-->
+      <form action="https://getform.io/f/830e2aab-0700-413e-aeb5-dbc9075fd9a7" method="POST">
+
+        <!--Create name text box-->
+        <textarea type="text" name="name" placeholder = "Your name" cols = "15" rows = "1"></textarea>
+
+        <!--Create email text box-->
+        <textarea type="email" name="email" placeholder = "Email (optional)" cols = "15" rows = "1"></textarea><br>
+
+        <!--Create ask us anything text box-->
+        <textarea name="message" placeholder = "Ask us anything!" cols = "33" rows = "5"></textarea>
+        <input type="hidden" id="captchaResponse" name="g-recaptcha-response">
+        <br><button><a type="submit"><img src = "https://i.imgur.com/HudmaRu.png"/></button>
+
+      </form> 
+    </section>
+        <!--Create button for scrolling to top-->
+    <button class="scrollToTopBtn">↑</button>
+    <!--When someone's scrolled to here, this notifies the button (the arrow that brings you back to the top) to appear, more script is in scrollup.js-->
+
+    <!--Footer-->
+    <footer id= "footer-area"><br>
+      <ul>
+        <li><a href="#map">Map</a></li>
+        <li><a href="#calculator">Calculator</a></li>
+        <li><a href="#about">About</a></li>
+        <li id = "footerInfo"><a href="#info">Covid Information</a></li>
+        <li class = "footerInfo"><a href="#contact">Contact</a></li>
+        <li><a>&copy; Rona Phase 2021</a></li>
+      </ul>
+    </footer>
+  </body>
+</html>
